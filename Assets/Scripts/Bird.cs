@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bird : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class Bird : MonoBehaviour {
     public float flappingHeight;        // flapping height (public for editor)
     public GameObject pipe_up;          // ref to pipe_up game object
     public GameObject pipe_down;        // ref to pipe_down game object
+    public int screenHeight;
 
 	void Start () {
         // get ref from bird
@@ -20,6 +22,9 @@ public class Bird : MonoBehaviour {
     void BuildLevel () {
         Instantiate(pipe_down, new Vector3(5, 5), transform.rotation);
         Instantiate(pipe_up, new Vector3(5, -7), transform.rotation);
+
+        Instantiate(pipe_down, new Vector3(13, 5), transform.rotation);
+        Instantiate(pipe_up, new Vector3(13, -7), transform.rotation);
     }
 	
 	void Update () {
@@ -35,7 +40,7 @@ public class Bird : MonoBehaviour {
         // transform has the bird's position property
         // if y > 10 or < -10, then the player is out of bounds
         // TODO: find the height of the screen
-        if (transform.position.y > 20 || transform.position.y < -20)
+        if (transform.position.y > screenHeight || transform.position.y < -screenHeight)
             GameOver();
 	}
 
@@ -47,6 +52,7 @@ public class Bird : MonoBehaviour {
         // reset position back to 0,0
         transform.position = new Vector2(0, 0);
 
-        BuildLevel();
+        // reload scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

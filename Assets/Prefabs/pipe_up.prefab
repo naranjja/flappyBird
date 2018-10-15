@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipe_down: {fileID: 1191497566920860, guid: 954133a1ae0d58445aeded93044f26c0, type: 2}
-  availableLeftSize: 5
+  distanceBetweenPipes: 10
 --- !u!212 &212648569200299266
 SpriteRenderer:
   m_ObjectHideFlags: 1
