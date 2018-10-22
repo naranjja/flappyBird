@@ -23,7 +23,7 @@ public class PipeUp : MonoBehaviour {
         if (birdX - transform.position.x > availableLeftSpace)
         {
             // TODO: make function to generate these random values and return Vector2
-            float randomY = Random.Range(-3f, 2.2f);
+            float randomY = Random.Range(-3.5f, 2f);
             float randomGap = Random.Range(0.5f, 3);
 
             // when using "gameObject", Unity refers to the game object that this script is attached to

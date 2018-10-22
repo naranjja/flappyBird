@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4938364
 RectTransform:
   m_ObjectHideFlags: 0
@@ -145,11 +145,11 @@ RectTransform:
   m_Father: {fileID: 67678728}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 605}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: -1, y: -1}
+  m_AnchorMax: {x: 2, y: 2}
+  m_AnchoredPosition: {x: 1302, y: 1800}
+  m_SizeDelta: {x: -868, y: -1200}
+  m_Pivot: {x: -1, y: -1}
 --- !u!114 &4938365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  moveSpeed: 4.5
+  moveSpeed: 4
   flappingHeight: 3.5
   pipe_up: {fileID: 1639502378602480, guid: 32600c3cb6a7ee94d9ba33c4c65a9f75, type: 2}
   pipe_down: {fileID: 1191497566920860, guid: 954133a1ae0d58445aeded93044f26c0, type: 2}
@@ -806,7 +806,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: null'
+  m_Text: null
 --- !u!222 &953686448
 CanvasRenderer:
   m_ObjectHideFlags: 0
