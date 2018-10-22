@@ -24,6 +24,6 @@ public class PipeDown : MonoBehaviour {
         // if pipe_up collides with Player tag
         if (collision.gameObject.tag == "Player")
             bird.GameOver();
-            Destroy(gameObject);
+            //Destroy(gameObject);
     }
 }

@@ -16,6 +16,7 @@ public class Bird : MonoBehaviour {
     public Text scoreText;
     public GameObject gameOverPanel;
     public Text gameOverText;
+    private bool isGameOver;
 
     void Start () {
         // get ref from bird
@@ -23,8 +24,8 @@ public class Bird : MonoBehaviour {
         BuildLevel();
         score = 0;
         SetScoreText();
+        isGameOver = false;
         gameOverPanel.SetActive(false);
-
     }
 
     void SetScoreText() {
@@ -44,27 +45,43 @@ public class Bird : MonoBehaviour {
     }
 	
 	void Update () {
-        score = (int)(transform.position.x * 5);
-        SetScoreText();
 
-        // move the bird constantly to the right
-        // keeping the y-coord the same
-        rb.velocity = new Vector3(moveSpeed, rb.velocity.y);
+        if (isGameOver) {
+            if (Input.GetKeyDown("space"))
+            {
+                // reset position back to 0,0
+                transform.position = new Vector2(0, 0);
 
-        if (Input.GetKeyDown("space"))
-            // move the bird flapping height up
-            // keeping the x-coord the same
-            rb.velocity = new Vector2(rb.velocity.x, flappingHeight);
+                // reload scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+                
+        } else {
+            score = (int)(transform.position.x * 5);
+            SetScoreText();
 
-        // transform has the bird's position property
-        // if y > 10 or < -10, then the player is out of bounds
-        // TODO: find the height of the screen
-        if (transform.position.y > screenHeight || transform.position.y < -screenHeight)
-            GameOver();
+            // move the bird constantly to the right
+            // keeping the y-coord the same
+            rb.velocity = new Vector3(moveSpeed, rb.velocity.y);
+
+            if (Input.GetKeyDown("space"))
+                // move the bird flapping height up
+                // keeping the x-coord the same
+                rb.velocity = new Vector2(rb.velocity.x, flappingHeight);
+
+            // transform has the bird's position property
+            // if y > 10 or < -10, then the player is out of bounds
+            // TODO: find the height of the screen
+            if (transform.position.y > screenHeight || transform.position.y < -screenHeight)
+                GameOver();
+        }
+
 	}
 
     // public means we can access it from other scripts
     public void GameOver() {
+
+        isGameOver = true;
 
         gameOverPanel.SetActive(true);
         gameOverText.text = score.ToString();
@@ -72,10 +89,7 @@ public class Bird : MonoBehaviour {
         // remove all velocity (to be stable when respawning)
         rb.velocity = Vector3.zero;
 
-        // reset position back to 0,0
-        transform.position = new Vector2(0, 0);
+        //gameObject.GetComponent<Renderer>().enabled = false;
 
-        // reload scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
