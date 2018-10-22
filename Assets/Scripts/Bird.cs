@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Bird : MonoBehaviour {
@@ -11,26 +12,38 @@ public class Bird : MonoBehaviour {
     public GameObject pipe_up;          // ref to pipe_up game object
     public GameObject pipe_down;        // ref to pipe_down game object
     public int screenHeight;
+    private int score;
+    public Text scoreText;
 
 	void Start () {
         // get ref from bird
         rb = GetComponent<Rigidbody2D>();
         BuildLevel();
-	}
+        score = 0;
+        SetScoreText();
+
+    }
+
+    void SetScoreText() {
+        scoreText.text = "Score: " + score.ToString();
+    }
 
     // TODO: this is dirty, would be better to have a game manager script
     void BuildLevel () {
         float randomPipe1Y = Random.Range(3f, 5f);
         float randomPipe2Y = Random.Range(-1.5f, 4f);
 
-        Instantiate(pipe_down, new Vector3(5, randomPipe1Y), transform.rotation);
-        Instantiate(pipe_up, new Vector3(5, randomPipe1Y-12), transform.rotation);
+        Instantiate(pipe_down, new Vector3(6, randomPipe1Y), transform.rotation);
+        Instantiate(pipe_up, new Vector3(6, randomPipe1Y-12), transform.rotation);
 
-        Instantiate(pipe_down, new Vector3(13, randomPipe2Y), transform.rotation);
-        Instantiate(pipe_up, new Vector3(13, randomPipe2Y-12), transform.rotation);
+        Instantiate(pipe_down, new Vector3(14, randomPipe2Y), transform.rotation);
+        Instantiate(pipe_up, new Vector3(14, randomPipe2Y-12), transform.rotation);
     }
 	
 	void Update () {
+        score = (int)(transform.position.x * 5);
+        SetScoreText();
+
         // move the bird constantly to the right
         // keeping the y-coord the same
         rb.velocity = new Vector3(moveSpeed, rb.velocity.y);
