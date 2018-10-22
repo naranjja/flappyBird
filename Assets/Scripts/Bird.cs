@@ -14,13 +14,16 @@ public class Bird : MonoBehaviour {
     public int screenHeight;
     private int score;
     public Text scoreText;
+    public GameObject gameOverPanel;
+    public Text gameOverText;
 
-	void Start () {
+    void Start () {
         // get ref from bird
         rb = GetComponent<Rigidbody2D>();
         BuildLevel();
         score = 0;
         SetScoreText();
+        gameOverPanel.SetActive(false);
 
     }
 
@@ -62,6 +65,10 @@ public class Bird : MonoBehaviour {
 
     // public means we can access it from other scripts
     public void GameOver() {
+
+        gameOverPanel.SetActive(true);
+        gameOverText.text = score.ToString();
+
         // remove all velocity (to be stable when respawning)
         rb.velocity = Vector3.zero;
 
